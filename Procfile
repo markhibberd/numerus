@@ -1,1 +1,1 @@
-web: ./dist/build/numerus/numerus
+web: ./dist/build/numerus/numerus $PORT $DATABASE_URL

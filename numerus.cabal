@@ -24,7 +24,10 @@ Flag                small_base
 Library
   Build-Depends:
                     base                            >= 3          && < 5,
-                    scotty                          == 0.4.6
+                    scotty                          == 0.4.6,
+                    postgresql-simple               == 0.3.3.2,
+                    bytestring                      >= 0.9,
+                    resource-pool                   == 0.2.1.1
 
   GHC-Options:
                     -Wall -fno-warn-orphans
