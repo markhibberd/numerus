@@ -1,0 +1,55 @@
+#!/bin/sh -eu
+
+LOCATION=`(readlink "$0" || printf "%s" "$0") | xargs dirname`
+
+printf "project name (lower case, '-' separated): "
+read numerus
+
+printf "project category (hackage category): "
+read Web
+
+printf "project desc (single sentence decription): "
+read A build number server.
+
+printf "project namespace (camel case, '.' separated): "
+read Numerus
+
+printf "github account name: "
+read markhibberd
+
+Numerus="`echo $Numerus | sed -e 's:\.:/:g'`"
+set -- sed -e "s:numerus:$numerus:g" -e "s:Numerus:$Numerus:g" -e "s:A build number server.:$A build number server.:g" -e "s:Numerus:$Numerus:g" -e "s:markhibberd:$markhibberd:g" -e "s:Web:$Web:g"
+
+# file renames
+find "$LOCATION" -type f | while read d; do
+   target=`echo "$d" | "$@"`
+   [ "$target" = "$d" ] || {
+     target_dir=`dirname $target`
+     target_file=`basename $target`
+     mkdir -p "$target_dir"
+     mv "$d" "$target_dir/$target_file" 
+   }
+done
+
+# directory renames
+find "$LOCATION" -type d | while read d; do
+   target=`echo "$d" | "$@"`
+   [ "$target" = "$d" ] || {
+     target_dir=`dirname $target`
+     target_file=`basename $target`
+     mkdir -p "$target_dir"
+     mv "$d" "$target_dir/$target_file" 
+   }
+done
+
+# content renames
+find "$LOCATION" -type f | while read f; do
+    mv "$f" "$f.bak"
+    "$@" < "$f.bak" > "$f" && rm "$f.bak"
+done
+
+# tweak readme
+rm "$LOCATION/README.md"
+mv "$LOCATION/README" "$LOCATION/README.md"
+rm -rf "$LOCATION/.git"
+(cd $LOCATION && git init && git add . && git commit -m "initial commit created by template")

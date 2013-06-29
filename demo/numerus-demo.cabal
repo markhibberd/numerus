@@ -1,0 +1,30 @@
+Name:               numerus-demo
+Version:            0.0.1
+License:            BSD3
+Author:             Mark Hibberd <mark@hibberd.id.au>
+Maintainer:         Mark Hibberd <mark@hibberd.id.au>
+Copyright:          Mark Hibberd
+Synopsis:           Demo package for A build number server.
+Category:           Experimental
+Description:        Demo package for A build number server.
+Homepage:           https://github.com/markhibberd/numerus
+Cabal-Version:      >= 1.6
+Build-Type:         Simple
+
+Source-Repository   head
+  Type:             git
+  Location:         https://github.com/markhibberd/numerus.git
+
+Flag                small_base
+  Description:      Choose the new, split-up base package.
+
+Executable          numerus-demo
+  Hs-Source-Dirs:
+                    ../../src .
+
+  Main-Is:
+                    Main.hs
+
+  Build-Depends:
+                   base >= 3 && < 5
+
