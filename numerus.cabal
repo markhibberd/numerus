@@ -23,7 +23,8 @@ Flag                small_base
 
 Library
   Build-Depends:
-                    base                            >= 3          && < 5
+                    base                            >= 3          && < 5,
+                    scotty                          == 0.4.6
 
   GHC-Options:
                     -Wall -fno-warn-orphans
@@ -34,4 +35,3 @@ Library
   Exposed-Modules:
                     Numerus
                     Numerus.Core
-
