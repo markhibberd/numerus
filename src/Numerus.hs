@@ -10,5 +10,3 @@
 module Numerus (module X) where
 
 import Numerus.Core as X
-
-

@@ -35,3 +35,9 @@ Library
   Exposed-Modules:
                     Numerus
                     Numerus.Core
+
+executable         numerus
+    ghc-options:   -Wall -threaded -O2
+    main-is:           ../src/main.hs
+    hs-source-dirs:    dist
+    build-depends:     base, numerus
